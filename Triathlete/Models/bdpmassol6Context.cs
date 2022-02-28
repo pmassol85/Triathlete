@@ -275,8 +275,8 @@ namespace Triathlete.Models
 
             modelBuilder.Entity<LicenceClub>(entity =>
             {
-                entity.HasKey(e => e.LicId)
-                    .HasName("PRIMARY");
+                //entity.HasKey(e => e.LicId)
+                //    .HasName("PRIMARY");
 
                 entity.ToTable("licence_club");
 
@@ -284,9 +284,9 @@ namespace Triathlete.Models
 
                 entity.HasIndex(e => e.ClubIdAdherer, "fk_licence_club_club1");
 
-                entity.Property(e => e.LicId)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("lic_id");
+                //entity.Property(e => e.LicId)
+                //    .HasColumnType("int(11)")
+                //    .HasColumnName("lic_id");
 
                 entity.Property(e => e.ClubIdAdherer)
                     .HasColumnType("int(11)")
@@ -313,11 +313,11 @@ namespace Triathlete.Models
                     .HasForeignKey(d => d.ClubIdEntrainer)
                     .HasConstraintName("fk_licence_club_club");
 
-                entity.HasOne(d => d.Lic)
-                    .WithOne(p => p.LicenceClub)
-                    .HasForeignKey<LicenceClub>(d => d.LicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_licence_club_licence");
+                //entity.HasOne(d => d.Lic)
+                //    .WithOne(p => p.LicenceClub)
+                //    .HasForeignKey<LicenceClub>(d => d.LicId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("fk_licence_club_licence");
             });
 
             modelBuilder.Entity<ProduitDopant>(entity =>

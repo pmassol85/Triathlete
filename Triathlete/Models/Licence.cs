@@ -25,7 +25,7 @@ namespace Triathlete.Models
         public DateTime? LicDateNaissance { get; set; }
 
         public virtual Categorie Cat { get; set; }
-        public virtual LicenceClub LicenceClub { get; set; }
+        // enleve : public virtual LicenceClub LicenceClub { get; set; }
         public virtual ICollection<Inscription> Inscriptions { get; set; }
     }
 }
