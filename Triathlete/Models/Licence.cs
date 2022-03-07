@@ -22,10 +22,10 @@ namespace Triathlete.Models
         public string LicRue { get; set; }
         public string LicCodePostal { get; set; }
         public string LicVille { get; set; }
-        public DateTime? LicDateNaissance { get; set; }
+        public DateTime LicDateNaissance { get; set; }
 
         public virtual Categorie Cat { get; set; }
-        // enleve : public virtual LicenceClub LicenceClub { get; set; }
+        //public virtual LicenceClub LicenceClub { get; set; }
         public virtual ICollection<Inscription> Inscriptions { get; set; }
     }
 }

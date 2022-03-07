@@ -18,21 +18,6 @@ namespace Triathlete
         public Form1()
         {
             InitializeComponent();
-
-            bdpmassol6Context cnx = new bdpmassol6Context();
-
-            LicenceClub triath = new LicenceClub();
-            //triath.LicNom = "noueav";
-            //triath.LicPrenom = "ath";
-            //triath.CatId = 1;
-            //triath.ClubIdAdherer = 1;
-            //triath.LicDatePremiereLice = new DateTime(2021, 02, 28);
-
-            //cnx.LicenceClubs.Add(triath);
-            //cnx.SaveChanges();
-
-            triath = cnx.LicenceClubs.Find(5);
         }
-
     }
 }

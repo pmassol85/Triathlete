@@ -23,6 +23,7 @@ namespace Triathlete.Models
         public virtual DbSet<Inscription> Inscriptions { get; set; }
         public virtual DbSet<Licence> Licences { get; set; }
         public virtual DbSet<LicenceClub> LicenceClubs { get; set; }
+        public virtual DbSet<Mavue> Mavues { get; set; }
         public virtual DbSet<ProduitDopant> ProduitDopants { get; set; }
         public virtual DbSet<Triathlon> Triathlons { get; set; }
         public virtual DbSet<TypeTriathlon> TypeTriathlons { get; set; }
@@ -212,6 +213,9 @@ namespace Triathlete.Models
 
                 entity.HasIndex(e => e.CatId, "fk_licence_categorie");
 
+                entity.HasIndex(e => e.LicEmail, "lic_email")
+                    .IsUnique();
+
                 entity.Property(e => e.LicId)
                     .HasColumnType("int(11)")
                     .HasColumnName("lic_id");
@@ -221,50 +225,49 @@ namespace Triathlete.Models
                     .HasColumnName("cat_id");
 
                 entity.Property(e => e.LicCodePostal)
-                    .HasMaxLength(32)
+                    .IsRequired()
+                    .HasMaxLength(5)
                     .HasColumnName("lic_code_postal")
-                    .HasDefaultValueSql("'NULL'")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.LicDateNaissance)
                     .HasColumnType("date")
-                    .HasColumnName("lic_date_naissance")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_date_naissance");
 
                 entity.Property(e => e.LicEmail)
+                    .IsRequired()
                     .HasMaxLength(128)
-                    .HasColumnName("lic_email")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_email");
 
                 entity.Property(e => e.LicNom)
+                    .IsRequired()
                     .HasMaxLength(128)
-                    .HasColumnName("lic_nom")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_nom");
 
                 entity.Property(e => e.LicPhoto)
+                    .IsRequired()
                     .HasColumnType("longblob")
-                    .HasColumnName("lic_photo")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_photo");
 
                 entity.Property(e => e.LicPrenom)
+                    .IsRequired()
                     .HasMaxLength(128)
-                    .HasColumnName("lic_prenom")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_prenom");
 
                 entity.Property(e => e.LicRue)
+                    .IsRequired()
                     .HasMaxLength(128)
-                    .HasColumnName("lic_rue")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_rue");
 
                 entity.Property(e => e.LicSexe)
-                    .HasMaxLength(128)
-                    .HasColumnName("lic_sexe")
-                    .HasDefaultValueSql("'NULL'");
+                    .IsRequired()
+                    .HasColumnType("enum('F','H')")
+                    .HasColumnName("lic_sexe");
 
                 entity.Property(e => e.LicVille)
+                    .IsRequired()
                     .HasMaxLength(128)
-                    .HasColumnName("lic_ville")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("lic_ville");
 
                 entity.HasOne(d => d.Cat)
                     .WithMany(p => p.Licences)
@@ -318,6 +321,18 @@ namespace Triathlete.Models
                 //    .HasForeignKey<LicenceClub>(d => d.LicId)
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
                 //    .HasConstraintName("fk_licence_club_licence");
+            });
+
+            modelBuilder.Entity<Mavue>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("mavue");
+
+                entity.Property(e => e.Toto99)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("toto(99)")
+                    .HasDefaultValueSql("'NULL'");
             });
 
             modelBuilder.Entity<ProduitDopant>(entity =>
