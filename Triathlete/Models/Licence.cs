@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -27,5 +28,8 @@ namespace Triathlete.Models
         public virtual Categorie Cat { get; set; }
         //public virtual LicenceClub LicenceClub { get; set; }
         public virtual ICollection<Inscription> Inscriptions { get; set; }
+
+        [NotMapped]
+        public string FullName { get { return this.LicNom + " " + this.LicPrenom; } }
     }
 }
